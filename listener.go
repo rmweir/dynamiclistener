@@ -71,6 +71,7 @@ func NewListener(l net.Listener, storage TLSStorage, caCert *x509.Certificate, c
 	if config.CloseConnOnCertChange {
 		if len(dynamicListener.tlsConfig.Certificates) == 0 {
 			dynamicListener.tlsConfig.NextProtos = []string{"http/1.1"}
+			logrus.Infof("Setting NextProtos to http/1.1 only")
 		}
 		dynamicListener.conns = map[int]*closeWrapper{}
 	}
